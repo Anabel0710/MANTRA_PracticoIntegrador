@@ -1,20 +1,24 @@
 import java.util.ArrayList;
 import java.util.Calendar;
 /**
- * Write a description of class Biblioteca here.
+ * Representa una biblioteca que administra libros, socios y prestamos.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Rocio Anabel Gonzalez, Rodriguez Mercedes Antonella y Gomez Matias.
+ * @version 1.0
  */
 public class Biblioteca{
     private String nombre;
     private ArrayList<Socio> socios;
     private ArrayList<Libro> libros;
     
+    /**
+     * Constructor de Biblioteca
+     * @param p_nombre nombre de la biblioteca 
+     */
     public Biblioteca(String p_nombre){
         this.setNombre(p_nombre);
-        this.socio = new ArrayList<Socio>();
-        this.libros = new ArratList<Libro>();
+        this.setSocios (new ArrayList<Socio>());
+        this.setLibros(new ArrayList<Libro>());
     }
     
     public String getNombre(){
@@ -26,7 +30,19 @@ public class Biblioteca{
     public ArrayList<Libro> getLibros(){
         return this.libros;
     }
-    
+
+    private void setNombre(String p_nombre){
+        this.nombre = p_nombre;
+    }
+
+    private void setSocios(ArrayList<Socio> p_socios){
+        this.socios = p_socios;
+    }
+
+    private void setLibros(ArrayList<Libro> p_libros){
+        this.libros = p_libros;
+    }
+
     public void nuevoLibro(String p_titulo, int p_edicion, String p_editorial, int p_anio){
         Libro nuevo = new Libro(p_titulo, p_edicion, p_editorial, p_anio);
         libros.add(nuevo);
@@ -52,10 +68,10 @@ public class Biblioteca{
         return false;
     }
     
-    public void devolverLibro(Libro p_libro) throws LibroNoPrestadoExeption{
+    public void devolverLibro(Libro p_libro) throws LibroNoPrestadoException{
         if(!p_libro.prestado()){
-            throw new LibroNoPrestadoExeption("El libro " + p_libro.getTitulo() + 
-                         "no se puede devolver ya que se encuetra en la biblioteca");
+            throw new LibroNoPrestadoException("El libro " + p_libro.getTitulo() + 
+                         "No se puede devolver ya que se encuentra en la biblioteca");
         }
         Prestamo unPrestamo = p_libro.ultimoPrestamo();
         unPrestamo.registrarFechaDevolucion(Calendar.getInstance());
@@ -72,7 +88,7 @@ public class Biblioteca{
     }
     
     public ArrayList<Prestamo> prestamosVencidos(){
-        ArraryList<Prestamo> vencidos = new ArrayList<Prestamo>();
+        ArrayList<Prestamo> vencidos = new ArrayList<Prestamo>();
         Calendar hoy = Calendar.getInstance();
         for(Libro l : libros){
             if(l.prestado()){
