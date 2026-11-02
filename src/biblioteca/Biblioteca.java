@@ -45,17 +45,17 @@ public class Biblioteca{
 
     public void nuevoLibro(String p_titulo, int p_edicion, String p_editorial, int p_anio){
         Libro nuevo = new Libro(p_titulo, p_edicion, p_editorial, p_anio);
-        libros.add(nuevo);
+        this.getLibros().add(nuevo);
     }
     
     public void nuevoSocioEstudiante(int p_dniSocio, String p_nombre, String p_carrera) {
         Estudiante est = new Estudiante(p_dniSocio, p_nombre, p_carrera);
-        socios.add(est);
+        this.getSocios().add(est);
     }
 
     public void nuevoSocioDocente(int p_dniSocio, String p_nombre, String p_area) {
         Docente doc = new Docente(p_dniSocio, p_nombre, p_area);
-        socios.add(doc);
+        this.getSocios().add(doc);
     }
     
     public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro){
@@ -78,19 +78,19 @@ public class Biblioteca{
     }
     
     public int cantidadDeSociosPorTipo(String p_objeto){
-        int c = 0;
-        for (Socio s : socios){
+        int cantidad = 0;
+        for(Socio s : this.getSocios()){
             if(s.soyDeLaClase().equalsIgnoreCase(p_objeto)){
-                c++;
+                cantidad++;
             }
         }
-        return c;
+        return cantidad;
     }
     
     public ArrayList<Prestamo> prestamosVencidos(){
         ArrayList<Prestamo> vencidos = new ArrayList<Prestamo>();
         Calendar hoy = Calendar.getInstance();
-        for(Libro l : libros){
+        for(Libro l : this.getLibros()){
             if(l.prestado()){
                 Prestamo u = l.ultimoPrestamo();
                 if(u.vencido(hoy)){
@@ -103,7 +103,7 @@ public class Biblioteca{
     
     public ArrayList<Docente> docentesResponsables() {
         ArrayList<Docente> responsables = new ArrayList<Docente>();
-        for (Socio s : socios) {
+        for (Socio s : this.getSocios()) {
             if (s instanceof Docente) {
                 Docente d = (Docente) s;
                 if (d.esResponsable()) {
@@ -122,11 +122,19 @@ public class Biblioteca{
     }
 
     public Socio buscarSocio(int p_dni) {
-        for (Socio s : socios) {
+        for (Socio s : this.getSocios()) {
             if (s.getDniSocio() == p_dni) {
                 return s;
             }
         }
         return null;
+    }
+
+    public String listaDeSocios() {
+        String listado = "";
+        for (Socio s : this.getSocios()) {
+            listado += s.toString() + "\n";
+        }
+        return listado;
     }
 }
