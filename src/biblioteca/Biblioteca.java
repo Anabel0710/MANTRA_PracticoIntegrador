@@ -137,4 +137,12 @@ public class Biblioteca{
         }
         return listado;
     }
+
+    public String listaDeLibros() {
+        String listado = "";
+        for (Libro l : this.getLibros()) {
+            listado += l.toString() + "\n";
+        }
+        return listado;
+    }
 }
