@@ -12,14 +12,15 @@ public class Libro{
     private int edicion;
     private String editorial;
     private int anio;
-    private ArraryList<Prestamo> prestamos;
+    private ArrayList<Prestamo> prestamos;
+ 
     
     public Libro(String p_titulo, int p_edicion, String p_editorial, int p_anio){
         this.setTitulo(p_titulo);
         this.setEdicion(p_edicion);
         this.setEditorial(p_editorial);
         this.setAnio(p_anio);
-        this.setPrestamos = new ArrayList<Prestamo>();
+        this.setPrestamos(new ArrayList<Prestamo>());
     }
     
     public String getTitulo(){
