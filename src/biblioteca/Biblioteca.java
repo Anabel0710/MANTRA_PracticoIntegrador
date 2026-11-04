@@ -146,3 +146,38 @@ public class Biblioteca{
         return listado;
     }
 }
+    /**
+     * Emite la lista de títulos de libros SIN TÍTULOS REPETIDOS.
+     */
+    public String listaDeTitulos() {
+        ArrayList<String> titulosUnicos = new ArrayList<String>();
+
+        for (Libro unLibro : this.getLibros()) {
+            String titulo = unLibro.getTitulo();
+            if (!titulosUnicos.contains(titulo)) {
+                titulosUnicos.add(titulo);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("--- Lista de Títulos de la Biblioteca ---\n");
+        int index = 1;
+        for (String titulo : titulosUnicos) {
+            sb.append(index).append(") ").append(titulo).append("\n");
+            index++;
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Emite el reporte de docentes responsables según Formato 3.
+     */
+    public String listaDeDocentesResponsables() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Lista de Docentes Responsables: \n");
+
+        for (Docente doc : this.docentesResponsables()) {
+            sb.append("* ").append(doc.toString()).append("\n");
+        }
+        return sb.toString();
+    }
