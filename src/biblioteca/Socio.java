@@ -41,9 +41,12 @@ public abstract class Socio{
        this.diasPrestamo = p_dias;
    }
    
-   public void agregarPrestamo(Prestamo p_prestamos){
-       prestamos.add(p_prestamos);
-   }
+   public boolean agregarPrestamo(Prestamo p_prestamo) {
+      return this.getPrestamos().add(p_prestamo);
+}
+   public boolean addPrestamo(Prestamo p_prestamo) {
+      return this.agregarPrestamo(p_prestamo);
+}
    
    public int cantLibrosPrestados(){
        int cant = 0;
