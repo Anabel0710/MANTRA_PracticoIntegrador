@@ -31,8 +31,8 @@ public class Prestamo{
         return this.libro;
     }
     
-    public void registrarFechaDeDevolucion(Calendar p_fecha){
-        this.fechaDevolucion = p_fecha;
+    public void registrarFechaDevolucion(Calendar p_fecha) {
+        this.setFechaDevolucion(p_fecha);
     }
     
     public boolean vencido(Calendar p_fecha){
