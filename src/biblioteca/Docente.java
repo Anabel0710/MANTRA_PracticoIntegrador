@@ -51,6 +51,11 @@ public class Docente extends Socio
         this.setDiasPrestamo(this.getDiasPrestamo() + p_dias);
     }
     @Override
+    public boolean puedePedir() {
+    return super.puedePedir();
+    }
+    
+    @Override
     public String soyDeLaClase() {
         return "Docente";
     }
