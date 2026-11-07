@@ -145,7 +145,7 @@ public class Biblioteca{
         }
         return listado;
     }
-}
+
     /**
      * Emite la lista de títulos de libros SIN TÍTULOS REPETIDOS.
      */
@@ -181,3 +181,4 @@ public class Biblioteca{
         }
         return sb.toString();
     }
+}
